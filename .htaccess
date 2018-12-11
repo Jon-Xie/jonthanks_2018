@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteRule ^journal/?$ index.php?type=journal&slug=journal&subtype=landing
+RewriteRule ^journal/([^/]*)/?$ index.php?type=journal&slug=journal&subtype=category&catSlug=$1 [L]
+RewriteRule ^journal/([^/]*)/ajax/?$ index.php?type=journal&slug=journal&subtype=category&catSlug=$1&ajax=true [L] #For Ajax category response
+RewriteRule ^journal/([^/]*)/([^/]*)/?$ index.php?type=journal&slug=journal&subtype=post&catSlug=$1&postSlug=$2 [L]
+RewriteRule ^journal/([^/]*)/([^/]*)/ajax/?$ index.php?type=journal&slug=journal&subtype=post&catSlug=$1&postSlug=$2&ajax=true [L]
+
+RewriteRule ^gallery/?$ index.php?type=gallery&slug=gallery
+RewriteRule ^gallery/([^/]*)/?$ index.php?type=gallery&slug=gallery&category=$1
+RewriteRule ^gallery/([^/]*)/ajax/?$ index.php?type=gallery&slug=gallery&category=$1&ajax=true
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+[^/])/?$ /index.php?type=page&slug=$1 [L]

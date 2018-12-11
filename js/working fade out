@@ -1,0 +1,136 @@
+working fade out
+
+$('.ajax-link').click(function(){
+		// $('main').css('opacity', 0);
+		// $('.main-container').delay(10000).fadeOut(5000);
+		$('.main-container').fadeOut('fast', function () {                                         
+		var destination = $(this).data('destination');//contact.html
+		var type = $(this).data('type');
+		var that = this;
+		$.ajax({ //xhr request ~20 lines code in vanilla
+			url : destination,
+			method : "GET",
+		}).done(function(JSONresponse){
+			// if(type == 'page'){ 
+				var slug = $(that).data('slug');
+				// $(".main-container").hide().fadeIn(1000);
+				$.ajax({ 
+					url : 'template-page.php',
+					method : "GET",
+					beforeSend : function(){
+						if(slug === 'home'){
+							$('.ajax-loading-home').fadeIn();
+						}else{
+							$('.ajax-loading-other').fadeIn();
+						}
+					},
+				}).done(function(template){
+					console.log(template);
+					$('.main-container').html(template);
+					var responseObject = JSON.parse(JSONresponse);
+					// $('#page-title').html(responseObject.title);
+					$('#page-content').html(responseObject.content);
+					$('#page-sidebar').html(responseObject.sidebar);
+					$('#page-sidebar').hide().delay(500).fadeIn(1000);
+					if(slug === 'home'){
+						$('.ajax-loading-home').fadeOut();
+					}else{
+						$('.ajax-loading-other').fadeOut();
+					}
+					// $('main').css('opacity', 1);
+					$(".main-container").delay(300).hide().fadeIn(1000);
+				});
+			});
+		});
+	});
+	// 		}else if(type == 'news'){
+	// 			$(".main-container").hide().fadeIn(1000);
+	// 			$.ajax({ 
+	// 				url : 'template-news.php',
+	// 				method : "GET",
+	// 				beforeSend : function(){
+	// 					$('.ajax-loading').fadeIn();
+	// 					console.log('start');
+	// 				},
+	// 			}).done(function(template){
+	// 				$('#page-sidebar').html('');
+	// 				$('.main-container').html(template);
+	// 				var innertemplate = $('#page-content');
+	// 				var responseObject = JSON.parse(JSONresponse);
+	// 				var newsBoxes = '';
+	// 				for(var i=0; i< responseObject.length; i++){
+	// 					var newsItem = responseObject[i];
+	// 					$(innertemplate).find('.news-item-title').html(newsItem.title);
+	// 					$(innertemplate).find('.news-item-content').html(newsItem.excerpt);
+	// 					$(innertemplate).find('.news-item-date').html(newsItem.date);
+	// 					newsBoxes += $(innertemplate).html(); //object innertemplate
+	// 					//$('#page-content').append($(innertemplate).html()); This is not going to work!!!
+	// 				}
+	// 				$('#page-content').html(newsBoxes); //string with elements too
+	// 				//bug with 8 septs vs 4 that we wanted 
+	// 				$('.ajax-loading').fadeOut();
+	// 			});
+	// 		}else if(type == 'gallery'){
+	// 			$(".main-container").delay(900).hide().fadeIn(1000);
+	// 			$.ajax({ 
+	// 				url : 'template-gallery.php',
+	// 				method : "GET",
+	// 			}).done(function(template){
+	// 				$('#page-sidebar').html('');
+	// 				$('.main-container').html(template);
+	// 				var innertemplate = $('.gallery');
+	// 				var responseObject = JSON.parse(JSONresponse);
+	// 				var imageBoxes = '';
+	// 				for(var i=0; i< responseObject.length; i++){
+	// 					var imageItem = responseObject[i];
+	// 					console.log(imageItem.original);
+	// 					$(innertemplate).find('.gallery-item').css('background-image','url('+imageItem.thumb+')');
+	// 					$(innertemplate).find('.gallery-item').attr('data-original',imageItem.original); //.data doesnt work
+	// 					$(innertemplate).find('.gallery-item').attr('title',imageItem.name);
+	// 					imageBoxes += $(innertemplate).html(); 
+	// 				}
+	// 				$('.gallery').html(imageBoxes); 
+	// 			});
+	// 		}else{
+	// 			$('.main-container').html(JSONresponse);
+	// 		}
+	// 	});
+	// });
+
+	// $('body').css('background-color', "black");
+	// $('body').css('color', "#ffffff");
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div style="position: absolute; left: 13%; top: 98px; font-size: 177px;"><span style="color: #ffffff;">//</span></div>
+<div style="margin-left: 23%; width: 20%; color: red; font-size: 90px; font-weight: 600; text-align: left;"><em>WIP</em> <em>WIP</em> <em>WIP</em></div>
+<h1 style="position: absolute; left: 32%; top: 55px; font-size: 123px;"><span style="color: #cb8feb; text-shadow: 450px 70px #fc8665;"><span style="color: #28c9b7;">WORK</span> IN PROGRESS</span></h1>
+<div class="gif"><img src="https://media.giphy.com/media/LlaqVVWod0n7y/giphy.gif" /></div>
+<div class="gif"><img src="images/asd.gif" height="597.25px" /></div>
+<div class="gif"><img src="https://media.giphy.com/media/3ohs7R2GceFRJfCKqs/giphy.gif" /></div>
+<div class="gif"><img src="https://media.giphy.com/media/sab5HqnY2mdBC/giphy.gif" width="480px" /></div>
+<div class="gif"><img src="https://media.giphy.com/media/Is377QfD4HQTm/giphy.gif" />
+<div class="gif"><img src="https://78.media.tumblr.com/eb0eb237a6ffa9c7f38f956bcf7440e1/tumblr_p3jdrcQUEA1x0uneyo3_540.gif" /></div>
+<div class="gif"><img src="https://78.media.tumblr.com/431fc8daaeedeaa197c62136c45ed758/tumblr_oykurlEvBp1ui7oe1o1_500.gif" /></div>
+<p><br /><br /><br /><br /><br /></p>
+<p><br /><br /><br /><br /><br /></p>
+<p><br /><br /><br /><br /><br /></p>
+<p><br /><br /></p>
+<p><span class="expandable-description-trigger">Details</span></p>
+<p class=" fancytext expandable-description">Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae molestias unde distinctio, facilis, quod mollitia hic assumenda. Dolor quae laudantium veritatis delectus perspiciatis provident molestias aut, impedit! Minus rem tempore fugiat architecto blanditiis repellendus quisquam quidem cumque, tenetur nihil nobis labore provident modi et sunt magni quasi dicta inventore veritatis repellat. Quis, iure nemo quo est nisi. Nisi officia voluptates sed vel laboriosam, voluptas? Voluptates, consequuntur, soluta. Laborum odio omnis dolores sit, aliquid sed. Eum nam, maxime voluptatum voluptatibus temporibus ipsam hic earum placeat, esse veritatis nostrum asperiores aut quo, corporis sit perferendis, labore numquam architecto. Voluptate vel illum quasi necessitatibus quas a velit nisi, perspiciatis. Optio vitae modi, fugiat dolores accusamus quia, harum voluptates, expedita dolorum placeat deleniti tempore doloribus id est. Dicta temporibus asperiores, neque. Iure animi repellat officia cum magnam sequi dolore neque? Quod impedit quibusdam quos placeat, molestiae veritatis mollitia explicabo quia quisquam voluptatum sed sapiente excepturi possimus eaque a quasi eveniet laboriosam aspernatur nulla est, ducimus praesentium ullam ipsa reiciendis! Libero, officiis nisi quos nesciunt odio doloribus hic cumque vel ut asperiores iure. Quas rem saepe beatae libero quos aliquid, dicta sint, corporis nulla laudantium ab, obcaecati nam molestias. In eum cum, quidem explicabo! Modi molestiae perferendis consectetur, quis eveniet architecto alias nam. Praesentium quia dolorem neque quis. Doloremque officia necessitatibus quidem nam qui voluptates eius reiciendis dolor, eligendi ipsa ratione aliquam omnis, facilis minima minus nemo voluptatibus soluta illo fuga assumenda perspiciatis sunt vero dignissimos! Unde commodi, cupiditate blanditiis officia ea quis iste quam mollitia laborum, quibusdam ab, repellendus dolorum? Necessitatibus et esse nesciunt commodi quae in fugiat impedit ipsa voluptas eligendi incidunt iste, cum, possimus, doloribus harum! Minima soluta est debitis amet laudantium maiores cupiditate harum adipisci nesciunt blanditiis. Nulla numquam blanditiis non officiis, et accusantium repellat dolorum ea libero natus, ut maiores laborum reiciendis delectus placeat odit totam aspernatur fugit rerum illo sint enim omnis harum itaque! Ab, tempora? Tenetur dolor, molestias rem! Porro, exercitationem, voluptatibus. Ullam iste reprehenderit, inventore quisquam modi sit, atque mollitia esse tempora dolorum illo nulla deleniti consequuntur ex pariatur facilis porro minima! Qui, rem et ipsa consequuntur nihil aperiam repudiandae nemo deleniti explicabo quo eaque accusantium dignissimos, natus culpa, dolores excepturi velit quis quasi obcaecati. Iure aspernatur tempora possimus provident at, deleniti sunt sed, hic magni blanditiis illo laboriosam magnam ratione consequatur. Laudantium illo libero odio reprehenderit tempore culpa nihil saepe! Id, at, debitis! Officia, delectus, molestiae.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae molestias unde distinctio, facilis, quod mollitia hic assumenda. Dolor quae laudantium veritatis delectus perspiciatis provident molestias aut, impedit! Minus rem tempore fugiat architecto blanditiis repellendus quisquam quidem cumque, tenetur nihil nobis labore provident modi et sunt magni quasi dicta inventore veritatis repellat. Quis, iure nemo quo est nisi. Nisi officia voluptates sed vel laboriosam, voluptas? Voluptates, consequuntur, soluta. Laborum odio omnis dolores sit, aliquid sed. Eum nam, maxime voluptatum voluptatibus temporibus ipsam hic earum placeat, esse veritatis nostrum asperiores aut quo, corporis sit perferendis, labore numquam architecto. Voluptate vel illum quasi necessitatibus quas a velit nisi, perspiciatis. Optio vitae modi, fugiat dolores accusamus quia, harum voluptates, expedita dolorum placeat deleniti tempore doloribus id est. Dicta temporibus asperiores, neque. Iure animi repellat officia cum magnam sequi dolore neque? Quod impedit quibusdam quos placeat, molestiae veritatis mollitia explicabo quia quisquam voluptatum sed sapiente excepturi possimus eaque a quasi eveniet laboriosam aspernatur nulla est, ducimus praesentium ullam ipsa reiciendis! Libero, officiis nisi quos nesciunt odio doloribus hic cumque vel ut asperiores iure. Quas rem saepe beatae libero quos aliquid, dicta sint, corporis nulla laudantium ab, obcaecati nam molestias. In eum cum, quidem explicabo! Modi molestiae perferendis consectetur, quis eveniet architecto alias nam. Praesentium quia dolorem neque quis. Doloremque officia necessitatibus quidem nam qui voluptates eius reiciendis dolor, eligendi ipsa ratione aliquam omnis, facilis minima minus nemo voluptatibus soluta illo fuga assumenda perspiciatis sunt vero dignissimos! Unde commodi, cupiditate blanditiis officia ea quis iste quam mollitia laborum, quibusdam ab, repellendus dolorum? Necessitatibus et esse nesciunt commodi quae in fugiat impedit ipsa voluptas eligendi incidunt iste, cum, possimus, doloribus harum! Minima soluta est debitis amet laudantium maiores cupiditate harum adipisci nesciunt blanditiis. Nulla numquam blanditiis non officiis, et accusantium repellat dolorum ea libero natus, ut maiores laborum reiciendis delectus placeat odit totam aspernatur fugit rerum illo sint enim omnis harum itaque! Ab, tempora? Tenetur dolor, molestias rem! Porro, exercitationem, voluptatibus. Ullam iste reprehenderit, inventore quisquam modi sit, atque mollitia esse tempora dolorum illo nulla deleniti consequuntur ex pariatur facilis porro minima! Qui, rem et ipsa consequuntur nihil aperiam repudiandae nemo deleniti explicabo quo eaque accusantium dignissimos, natus culpa, dolores excepturi velit quis quasi obcaecati. Iure aspernatur tempora possimus provident at, deleniti sunt sed, hic magni blanditiis illo laboriosam magnam ratione consequatur. Laudantium illo libero odio reprehenderit tempore culpa nihil saepe! Id, at, debitis! Officia, delectus, molestiae.</p>
+<p>a<br /><br /><br /><br /><br /></p>
+<p>b<br /><br /><br /><br /><br /></p>
+<p>x<br /><br /><br /><br /><br /></p>
+<p>d<br /><br /><img src="https://cdna.lystit.com/1200/630/tr/photos/hbx/c62247d2/supreme-Purplegrey-X-The-North-Face-Denali-Fleece-Jacket.jpeg" alt="" /></p>
+</div>
+</body>
+</html>
