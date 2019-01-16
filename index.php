@@ -69,8 +69,8 @@
 						$mainContent .= '<div class="news-box">';
 						$mainContent .= '<div class="post-back-button" data-id="'.$catSlug.'"><a href="http://jonthanks.com/journal/'.$catSlug.'">Back to '.$catSlug.'</a></div>';
 						$mainContent .= '<h1 class="news-item-title">'.$journalPost->title.'</h1>';
-						$mainContent .= '<p class="news-item-content">'.$journalPost->body.'</p>';
 						$mainContent .= '<span class="news-date news-item-date">'.date('F jS Y',strtotime($journalPost->date)).'</span>';
+						$mainContent .= '<p class="news-item-content">'.$journalPost->body.'</p>';
 						$mainContent .= '</div>';
 						$mainContent .= '</div>';
 
@@ -163,7 +163,7 @@
 	<meta name="google-site-verification" content="Dc6F0iQ_vmr706EOW_Wy2vWJ9oDESWUMlM5CVoQ1j5I" />
 	<link rel="shortcut icon" href="images/fav.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" href="css/flickity.css" media="screen">
+	
 	<link rel="stylesheet" type="text/css" href="<?=BASEURL ?>css/styles.css?v=<?= filemtime(BASEPATH.'css/styles.css') ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<!-- Global site tag (gtag.js) - Google Analytics -->

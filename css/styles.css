@@ -1,4 +1,4 @@
-.external-link {
+p.external-link {
 	color: rgba(0,0,0,.4) !important;
 	transition: all 0.25s;
 	position: relative;
@@ -127,7 +127,7 @@ main{
 p {
 	text-indent: 20px;
 	font-weight: 500;
-	line-height: 2;
+	line-height: 3;
 	margin-bottom: 3rem;
 	display: block;
 	width: 100%;
@@ -197,9 +197,9 @@ h5 + p{ /*Just target P tags that are appearing after H5 tags.*/
 .slider{
 	width: 100%;
 	display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
+ 	align-items: center;
+ 	justify-content: center;
+  	height: 200px;
 }
 
 .fancytext{
@@ -209,9 +209,9 @@ h5 + p{ /*Just target P tags that are appearing after H5 tags.*/
 }
 
 .header-divider {
-		display: none;
-		opacity: 0;
-	}
+	display: none;
+	opacity: 0;
+}
 
 .go{
 	padding-top: 0;
@@ -255,28 +255,6 @@ h5 + p{ /*Just target P tags that are appearing after H5 tags.*/
 	animation: moveInLeft 0.7s linear;
 }
 
-@keyframes moveInLeft {
-	0%  {
-		opacity: 0;
-		transform: translateX(200px);
-	}
-
-	50% {
-		opacity: 0.2;
-		transform: translateX(120px);
-	}
-
-	75% {
-		opacity: 0.6;
-		transform: translateX(40px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateX(0px);
-	}
-}
-
 /*done*/
 .nav-item{
 	height: 22px;
@@ -295,15 +273,6 @@ h5 + p{ /*Just target P tags that are appearing after H5 tags.*/
 	cursor: pointer;
 }
 
-.nav-item-left{
-	text-align: left;
-}
-.nav-item-right{
-	text-align: right;
-}
-.nav-item-center{
-	text-align: center;
-}
 .sub-nav{
 	display: none;
 }
@@ -311,6 +280,9 @@ h5 + p{ /*Just target P tags that are appearing after H5 tags.*/
 	margin-top: 50px;
 }
 /*done*/
+
+
+
 .current{
 	background: #FB4464;
 	color: #FEF987FF !important;
@@ -555,7 +527,8 @@ span img {
 		width: 100%;
 	}
 	p {
-		width: 50%;
+		width: 60%;
+		max-width: 570px;
 	}
 
 	.gif {
