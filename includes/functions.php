@@ -26,17 +26,30 @@ function thumbGen($src, $dest, $desired_width) {
 
 function getSeasonAndYearByDate($date){
 	$unixDate = strtotime($date);
-	$month = date('n',$unixDate);
 	$year = date('Y',$unixDate);
-	if($month>= 3 && $month <= 4){
+	$month = date('F',$unixDate);
+	$day = date('d',$unixDate);
+	$today = new DateTime($month.' '.$day);
+	// echo $date; exit();
+	$spring = new DateTime('March 20');
+	$summer = new DateTime('June 20');
+	$fall = new DateTime('September 22');
+	$winter = new DateTime('December 21');
+
+	if($today >= $spring && $today < $summer){
 		$season = 'Spring';
-	}else if($month >= 5 && $month <=8){
+	}else if($today >= $summer && $today < $fall){
 		$season = 'Summer';
-	}else if($month >= 9 && $month <=11){
-		$season = 'Autumn';
-	}else if($month >= 12 || $month <=2){
+	}else if($today >= $fall && $today < $winter){
+		$season = 'Fall';
+	}else{
 		$season = 'Winter';
 	}
+	if($month=="December" && $day>=21 && $day<=31){
+		$year++;
+		$season = 'Winter';
+	}
+
 	$output = $year.' '.$season;
 	return $output;
 }
