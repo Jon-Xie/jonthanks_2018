@@ -30,6 +30,7 @@ function getSeasonAndYearByDate($date){
 	$month = date('F',$unixDate);
 	$day = date('d',$unixDate);
 	$today = new DateTime($month.' '.$day);
+	
 	// echo $date; exit();
 	$spring = new DateTime('March 20');
 	$summer = new DateTime('June 20');
