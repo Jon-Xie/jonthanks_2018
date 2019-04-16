@@ -199,7 +199,9 @@ $(document).ready(function(){
 						// $('#page-title').html(responseObject.title);
 						$('#page-content').html(responseObject.content);
 						$('#page-sidebar').html(responseObject.sidebar);
-						$('#page-sidebar').hide().delay(500).fadeIn(1000);
+
+						fadeSubNavItems();
+						//$('#page-sidebar').hide().delay(500).fadeIn(1000); // I tried adding here
 						if(slug === 'home'){
 							$('.ajax-loading-home').fadeOut();
 						}else{
@@ -251,7 +253,9 @@ $(document).ready(function(){
 							sidebarContent += '<div class="nav-item journal-category" data-id="'+categoryItem+'"><a href="'+BASEURL+'journal/'+categoryItem+'" class="'+currentClass+'">'+categoryItem+'</a></div>';
 						}
 						$('#page-sidebar').html(sidebarContent);
-						$('#page-sidebar').hide().fadeIn(1000);
+
+						fadeSubNavItems();
+						//$('#page-sidebar').hide().fadeIn(1000);
 
 						$('.ajax-loading').fadeOut();
 					});
@@ -287,7 +291,9 @@ $(document).ready(function(){
 							sidebarContent += '<div class="nav-item gallery-category"><a href="/gallery/'+categoryItem.title+'"  data-cattitle="'+categoryItem.title+'">'+categoryItem.title+'</a></div>';
 						}
 						$('#page-sidebar').html(sidebarContent);
-						$('#page-sidebar').hide().delay(500).fadeIn(1000);
+
+						fadeSubNavItems();
+						// $('#page-sidebar').hide().delay(500).fadeIn(1000);
 
 						//Preload images
 						if(responseObject.images!=undefined){
@@ -422,14 +428,14 @@ $(document).ready(function(){
 	});
 	
 
-	//Ajax Spinner
-	// $('.ajax-loading').hide(); //bug ask Amir later  
-	// $(document).ajaxStart(function(){ //ajaxStart - ajaxStop = time of loading shown
-	// 	//if click listen is not the first nav-item a, then show spinner		
-	// 	$('.ajax-loading').fadeIn();
-	// }).ajaxStop(function(){
-	// 	$('.ajax-loading').fadeOut();
-	// }) GENERIC FOR ALL AJAX, UP IS SPECIFIC 9/4/18
+	// //Ajax Spinner
+	$('.ajax-loading').hide(); //bug ask Amir later  
+	$(document).ajaxStart(function(){ //ajaxStart - ajaxStop = time of loading shown
+		//if click listen is not the first nav-item a, then show spinner		
+		$('.ajax-loading').show();
+	}).ajaxStop(function(){
+		$('.ajax-loading').fadeOut(400);
+	}) //GENERIC FOR ALL AJAX, UP IS SPECIFIC 9/4/18
 	
 
 
@@ -448,6 +454,7 @@ $(document).ready(function(){
 	$(document).on("click",".lightbox-trigger", function(){
 		console.log('in light');
 		if($(this).hasClass('gallery-item')){
+			$(this).addClass('current');
 			var originalURL = $(this).data('original');
 			var theImage = "<img src='"+originalURL+"'>";
 			$('.lightbox-content').html(theImage);
@@ -455,8 +462,33 @@ $(document).ready(function(){
 		console.log('light');
 		$('.lightbox').fadeIn();
 		$('.lightbox-close').click(function(){
+			$('.gallery-item').removeClass('current');
 			$('.lightbox').fadeOut();
 		});
+	});
+
+	$(document).on("click",".arrow-left", function(){
+		var prevItem = $('.gallery .current').prev();
+		if(prevItem.length == 0){
+			prevItem = $('.gallery .gallery-item').last();
+		}
+		$('.gallery-item').removeClass('current');
+		$(prevItem).addClass('current');
+		var originalURL = $(prevItem).data('original');
+		var theImage = "<img src='"+originalURL+"'>";
+		$('.lightbox-content').hide().html(theImage).fadeIn();
+	});
+	$(document).on("click",".arrow-right", function(){
+		var nextItem = $('.gallery .current').next();
+		if(nextItem.length == 0){
+			nextItem = $('.gallery .gallery-item').first();
+		}
+		$('.gallery-item').removeClass('current');
+		$(nextItem).addClass('current');
+		var originalURL = $(nextItem).data('original');
+		var theImage = "<img src='"+originalURL+"'>";
+		$('.lightbox-content').hide().html(theImage).fadeIn();
+
 	});
 	
 
@@ -526,9 +558,23 @@ $(document).ready(function(){
 		fadeInMoveUp(windowScrollBottomPosition , 5);
 	});
 
-
-
+	fadeSubNavItems();
 });
+
+function fadeSubNavItems(){
+	var className = '#page-sidebar .nav-item';
+	var delaySetting = 300;
+	var delay = delaySetting;
+	$(className).each(function(){
+		var that = this;
+		setTimeout(function(){fadeMeIn(that);},delay); //timer 
+		delay += delaySetting;
+	});
+}
+
+function fadeMeIn(element){
+	$(element).addClass('go');
+}
 
 
 // function fadeTiles(tileClassName,delaySetting){

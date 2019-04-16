@@ -1,3 +1,19 @@
+header{
+	position: relative;
+}
+
+/*.pre-cascade-text{
+	
+	opacity: 1;
+	transition: all 1000ms;
+
+}
+
+.go-cascade-text{
+	padding-top: 0;
+	opacity: 1;
+}*/
+
 p.external-link {
 	color: rgba(0,0,0,.4) !important;
 	transition: all 0.25s;
@@ -31,6 +47,10 @@ p.external-link {
 	display: block;
 	float: left;
 	cursor: pointer;
+}
+
+.intro-img {
+		width: 100%;
 }
 
 .icon-instagram {
@@ -111,7 +131,7 @@ header{
 	width: 100%; 
 	padding: 20px;
 	box-sizing: border-box;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 main{
@@ -202,8 +222,8 @@ h5 + p{ /*Just target P tags that are appearing after H5 tags.*/
   	height: 200px;
 }
 
-.fancytext{
-	padding-top: 50px;
+#page-sidebar .nav-item{
+	padding-top: 30px;
 	opacity: 0;
 	transition: all 1000ms;
 }
@@ -213,7 +233,7 @@ h5 + p{ /*Just target P tags that are appearing after H5 tags.*/
 	opacity: 0;
 }
 
-.go{
+#page-sidebar .nav-item.go{
 	padding-top: 0;
 	opacity: 1;
 }
@@ -466,7 +486,11 @@ span img {
 	transform: translate(-50%,-50%);
 	z-index: 100;
 }
-
+.ajax-loading{
+	position: absolute;
+    bottom: -170px;
+    z-index: 100;
+}
 .hideme {
 	opacity: 0;
 }
@@ -521,14 +545,88 @@ span img {
 	display: inline-block;
 	max-width: 100%;
 }
+.main-container{
+	position: relative;
+}
+.fancytext{
+	padding-top: 50px;
+	opacity: 0;
+	transition: all 1000ms;
+}
+.go{
+	padding-top: 0;
+	opacity: 1;
+}
+.arrow-left svg,
+.arrow-right svg{
+	fill: #ffffff;
+	width: 30px;
+	height: 30px;
+	display: block;
+}
+.arrow-right svg{
+	transform: rotate(180deg);
+}
+.arrow-left{
+	font-size: 60px;
+	cursor: pointer;
+	color: white;
+	margin: 10px;
+	position: absolute;
+    top: 110%;
+    transform: translateY(-50%);
+    left: 41px;
+}
+.arrow-right{
+	font-size: 60px;
+	cursor: pointer;
+	color: white;
+	margin: 10px;
+	position: absolute;
+    top: 110%;
+    transform: translateY(-50%);
+    right: 41px;
+}
 	
 @media screen and (min-width: 768px){
+	
+.arrow-left{
+	font-size: 60px;
+	cursor: pointer;
+	color: white;
+	margin: 10px;
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -55px;
+}
+
+.arrow-right{
+	font-size: 60px;
+	cursor: pointer;
+	color: white;
+	margin: 10px;
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -55px;
+}
+	
+	.ajax-loading{
+		bottom: initial;
+		top: 6px;
+		right: -63px;
+	}
 	.nav-item{
 		width: 100%;
 	}
 	p {
 		width: 60%;
 		max-width: 570px;
+	}
+
+	.intro-img {
+		width:50%;
 	}
 
 	.gif {
