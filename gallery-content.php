@@ -12,6 +12,7 @@
 			'categoryId' => $row->categoryId
 		);
 	}
+	
 	//Get the categories
 	$sql = "SELECT * FROM `gallerysections`";
 	$result  = mysqli_query($conn,$sql);

@@ -1,7 +1,9 @@
 <?php 
 	require_once("includes/config.php");
 	//Get the current slug from URI
+	//www.jon.com/gallery?t=1
 	$currentURI = $_SERVER['REQUEST_URI'];
+	$currentURI = substr($currentURI, 0, strpos($currentURI, "?"));
 	$currentURIArray = explode('/',$currentURI);
 	$currentSlug = $currentURIArray[1];
 
@@ -115,7 +117,7 @@
 				$result  = mysqli_query($conn,$sql);
 				$responseArray = array();
 				while($image = mysqli_fetch_object($result)){
-					$mainContent .= '<div class="gallery-item lightbox-trigger" data-original="'.BASEURL.'images/gallery/'.$image->original.'" title="'.$image->name.'" data-categoryId="'.$image->categoryId.'" style="background-image:url('.BASEURL.'images/gallery/thumbnails/'.$image->thumb.');">&nbsp;</div>';
+					$mainContent .= '<div class="gallery-item lightbox-trigger" data-original="'.BASEURL.'images/gallery/'.$image->original.'" title="'.$image->name.'" data-categoryId="'.$image->categoryId.'" style="background-image:url(\''.BASEURL.'images/gallery/thumbnails/'.$image->thumb.'\');">&nbsp;</div>';
 				}
 			$mainContent .='</div></div>';
 

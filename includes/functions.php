@@ -18,7 +18,7 @@ function thumbGen($src, $dest, $desired_width) {
 	$virtual_image = imagecreatetruecolor($desired_width, $desired_height);
 	
 	/* copy source image at a resized size */
-	imagecopyresized($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);
+	imagecopyresampled($virtual_image, $source_image, 0, 0, 0, 0, $desired_width, $desired_height, $width, $height);
 	
 	/* create the physical thumbnail image to its destination */
 	imagejpeg($virtual_image, $dest, 100);

@@ -274,7 +274,7 @@ $(document).ready(function(){
 						if(responseObject.images!=undefined){
 							for(var i=0; i< responseObject.images.length; i++){
 								var imageItem = responseObject.images[i];
-								$(innertemplate).find('.gallery-item').css('background-image','url("'+imageItem.thumb+'")');
+								$(innertemplate).find('.gallery-item').css('background-image',"url('"+imageItem.thumb+"')");
 								$(innertemplate).find('.gallery-item').attr('data-original',imageItem.original); //.data doesnt work
 								$(innertemplate).find('.gallery-item').attr('title',imageItem.name);
 								$(innertemplate).find('.gallery-item').attr('data-categoryId',imageItem.categoryId);
@@ -458,6 +458,7 @@ $(document).ready(function(){
 			var originalURL = $(this).data('original');
 			var theImage = "<img src='"+originalURL+"'>";
 			$('.lightbox-content').html(theImage);
+			
 		}
 		console.log('light');
 		$('.lightbox').fadeIn();
@@ -575,6 +576,7 @@ function fadeSubNavItems(){
 function fadeMeIn(element){
 	$(element).addClass('go');
 }
+
 
 
 // function fadeTiles(tileClassName,delaySetting){
